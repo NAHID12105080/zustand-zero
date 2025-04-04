@@ -13,12 +13,9 @@ interface NoteStore {
   removeNote: (id: number) => void;
 }
 
-const useStore = create<NoteStore>((set) => ({
+export default create<NoteStore>((set) => ({
   notes: [],
-  addNote: (note) =>
-    set((state) => ({
-      notes: [...state.notes, note],
-    })),
+  addNote: (note) => set((state) => ({ notes: [...state.notes, note] })),
   updateNote: (id, updatedNote) =>
     set((state) => ({
       notes: state.notes.map((note) =>
@@ -26,9 +23,5 @@ const useStore = create<NoteStore>((set) => ({
       ),
     })),
   removeNote: (id) =>
-    set((state) => ({
-      notes: state.notes.filter((note) => note.id !== id),
-    })),
+    set((state) => ({ notes: state.notes.filter((note) => note.id !== id) })),
 }));
-
-export default useStore;
